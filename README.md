@@ -17,6 +17,14 @@ The main implementation of SDP is in `core/preprocessing.py`; offline policy-lea
 
 Run each command from the indicated directory because the scripts use relative paths. The reported experiments used 20-core parallelization; users can adjust `CORES` or `N_CORES` in each script according to their available computational resources. Full runs can take substantial time.
 
+### Random Seeds and Reproducibility
+
+All experiments use fixed random seeds to ensure exact reproducibility across runs:
+
+- **Synthetic simulations**: Random seeds ranging from 10 to 59 are passed directly as arguments to `run_exp1_one`. The seed initialization logic is located around line 539 in `simulation/code/run_exp.py`.
+- **Semi-synthetic experiments**: Random seeds ranging from 10 to 59 are passed as arguments to `run_exp_one` in `semi_synthetic/code/run_analysis.py`.
+- **Real-data analysis**: A consistent seeding protocol using seeds 10 through 29 is implemented in `real_data_analysis/code/run_analysis.py` to ensure stable evaluation and reproducible outputs.
+
 ### Synthetic experiments
 
 ```bash
